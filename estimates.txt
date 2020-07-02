@@ -1,0 +1,15 @@
+Write a paragraph or two describing the achievable Recovery Time Objective (RTO) and Recovery Point Objective (RPO) for this Multi-AZ, multi-region database in terms of:
+
+    CASE 1. Minimum RTO for a single AZ outage
+    CASE 2. Minimum RTO for a single region outage
+    CASE 3. Minimum RPO for a single AZ outage
+    CASE 4. Minimum RPO for a single region outage
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Related to CASE 1 and 2:
+The achievable RTO for a single AZ outage (CASE 1) is the time it takes to change to the standby instance provided in another AZ by AWS (between 60-120 seconds according with AWS documentation). Related to (CASE 2) the RTO is the time necessary to promote the RDS Read Replica to standalone primary instance. It can take minimum 45-60 minutes for RTO because a human staff interference will be necessary to promote the  read replica.
+
+
+Related to CASE 3 and 4:
+The achievable RPO for a single AZ outage (CASE 3) as we have a separate synchronous copy of the volume being maintained in a separate AZ. If the primary instance fails, you failover to the secondary instance with no data loss or just the time to DNS changes (In this scenario, worst case is some minutes). Related to (CASE 4), we still have a separate synchronous copy in the read replica instance in another region, however, in this scenario, a human staff interference will be necessary to promote the read replica. As soon as the alerting notify decision makers, the evaluation of the outage and making things available again would take 15-20 minutes (CASE 4).
