@@ -1,0 +1,83 @@
+$ ssh -i "udacity-keypair.pem" ubuntu@ec***.compute-1.amazonaws.com
+Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 5.3.0-1023-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu Jul  2 22:32:38 UTC 2020
+
+  System load:  0.0               Processes:           90
+  Usage of /:   14.9% of 7.69GB   Users logged in:     0
+  Memory usage: 16%               IP address for eth0: 10.1.11.81
+  Swap usage:   0%
+
+
+0 packages can be updated.
+0 updates are security updates.
+
+
+Last login: Thu Jul  2 22:21:54 2020 from 187.19.188.70
+ubuntu@ip-10-1-11-81:~$
+
+Last login: Thu Jul  2 22:21:54 2020 from 187.19.188.70
+ubuntu@ip-10-1-11-81:~$ mysql -h udacity.cvdhqlisbxg6.us-east-1.rds.amazonaws.com -u admin -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 42
+Server version: 5.7.22-log Source distribution
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| innodb             |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+6 rows in set (0.00 sec)
+
+
+mysql> use udacity
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql>
+
+mysql> CREATE TABLE table1 ( number INT(11) AUTO_INCREMENT, name VARCHAR(32) NOT NULL, city VARCHAR(32), age VARCHAR(7),PRIMARY KEY (number) );
+Query OK, 0 rows affected (0.07 sec)
+
+
+mysql> show tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| table1            |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO table1 VALUES (1, 'Udacity Test', 'Campina Grande', 15);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from table1;
++--------+--------------+----------------+------+
+| number | name         | city           | age  |
++--------+--------------+----------------+------+
+|      1 | Udacity Test | Campina Grande | 15   |
++--------+--------------+----------------+------+
+1 row in set (0.00 sec)
+
+mysql>
+
