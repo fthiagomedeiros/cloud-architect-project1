@@ -7,6 +7,9 @@ Write a paragraph or two describing the achievable Recovery Time Objective (RTO)
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
+RTO (maximum duration software interruption)
+RPO (maximum amount of time over which you can lose data)
+
 Related to CASE 1 and 2:
 The achievable RTO for a single AZ outage (CASE 1) is the time it takes to change to the standby instance provided in another AZ by AWS (between 60-120 seconds according with AWS documentation). Related to (CASE 2) the RTO is the time necessary to promote the RDS Read Replica to standalone primary instance. It can take minimum 45-60 minutes for RTO because a human staff interference would be necessary to promote the read replica.
 
