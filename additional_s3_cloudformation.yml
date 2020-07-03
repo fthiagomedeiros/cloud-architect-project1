@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >
+  Provisioning S3 Bucket through CloudFormation
+
+Parameters:
+  EnvType:
+    Type: String
+    Description: Environment type (dev, qa, stg or prod).
+    AllowedValues:
+      - prod
+      - qa
+      - stg
+      - dev
+
+Resources:
+
+  S3BucketVersioning:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${EnvType}-${AWS::Region}-website-udacity-project'
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'AES256'
+      VersioningConfiguration:
+        Status: Enabled
+
+Outputs:
+  S3BucketVersioningOutput:
+    Value: !GetAtt S3BucketVersioning.Arn
